@@ -193,6 +193,7 @@ class Addresses_OrderForm extends Extension {
 
 		$shippingAddressFields = CompositeField::create(
 			HeaderField::create(_t('CheckoutPage.SHIPPING_ADDRESS',"Shipping Address"), 3),
+			CheckboxField::create('ShippingSameName', 'Copy from your details'),
 			TextField::create('ShippingFirstName', _t('CheckoutPage.FIRSTNAME',"* First Name"))
 				->addExtraClass('shipping-firstname')
 				->setCustomValidationMessage(_t('CheckoutPage.PLEASE_ENTER_FIRSTNAME',"Please enter a first name.")),
@@ -220,6 +221,7 @@ class Addresses_OrderForm extends Extension {
 			HeaderField::create(_t('CheckoutPage.BILLINGADDRESS',"Billing Address"), 3),
 			$checkbox = CheckboxField::create('BillToShippingAddress', _t('CheckoutPage.SAME_ADDRESS',"same as shipping address?"))
 				->addExtraClass('shipping-same-address'),
+			CheckboxField::create('BillingSameName', 'Copy from your details'),
 			TextField::create('BillingFirstName', _t('CheckoutPage.FIRSTNAME',"* First Name"))
 				->setCustomValidationMessage(_t('CheckoutPage.PLEASEENTERYOURFIRSTNAME',"Please enter your first name."))
 				->addExtraClass('address-break'),
