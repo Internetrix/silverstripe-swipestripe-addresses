@@ -330,6 +330,31 @@ class Country extends DataObject {
  * @subpackage order
  */
 class Country_Shipping extends Country {
+	
+	public function requireDefaultRecords() {
+	
+		parent::requireDefaultRecords();
+	
+		if (!DataObject::get_one('Country_Shipping')) {
+	
+			$shopConfig = ShopConfig::current_shop_config();
+	
+			if (isset($shopConfig->ID)) {
+				foreach (self::$iso_3166_countryCodes as $code => $title) {
+					$country = new Country_Shipping();
+					$country->Code = $code;
+					$country->Title = $title;
+					$country->ShopConfigID = $shopConfig->ID;
+					$country->write();
+				}
+				DB::alteration_message('Shipping countries created', 'created');
+			} else {
+				DB::alteration_message('Shipping countries not created, please re-run /dev/build', 'error');
+			}
+				
+				
+		}
+	}
 
 	public function getCMSFields() {
 
