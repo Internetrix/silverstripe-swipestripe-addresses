@@ -209,13 +209,15 @@ class Addresses_OrderForm extends Extension {
 			TextField::create('ShippingPostalCode', _t('CheckoutPage.POSTAL_CODE',"* Zip / Postal Code")),
 			TextField::create('ShippingState', _t('CheckoutPage.STATE',"* State / Province"))
 				->addExtraClass('address-break'),
-			DropdownField::create('ShippingCountryCode', 
+			$cty1 = DropdownField::create('ShippingCountryCode', 
 					_t('CheckoutPage.COUNTRY',"* Country"), 
 					Country_Shipping::get()->map('Code', 'Title')->toArray()
 				)
 				->setCustomValidationMessage(_t('CheckoutPage.PLEASE_ENTER_COUNTRY',"Please enter a country."))
 				->addExtraClass('country-code')
 		)->setID('ShippingAddress')->setName('ShippingAddress');
+		
+		$cty1->setValue('AU');
 
 		$billingAddressFields = CompositeField::create(
 			HeaderField::create(_t('CheckoutPage.BILLINGADDRESS',"Billing Address"), 3),
@@ -237,11 +239,13 @@ class Addresses_OrderForm extends Extension {
 			TextField::create('BillingPostalCode', _t('CheckoutPage.POSTALCODE',"* Zip / Postal Code")),
 			TextField::create('BillingState', _t('CheckoutPage.STATE',"* State / Province"))
 				->addExtraClass('address-break'),
-			DropdownField::create('BillingCountryCode', 
+			$cty2 = DropdownField::create('BillingCountryCode', 
 					_t('CheckoutPage.COUNTRY',"* Country"), 
 					Country_Billing::get()->map('Code', 'Title')->toArray()
 				)->setCustomValidationMessage(_t('CheckoutPage.PLEASEENTERYOURCOUNTRY',"Please enter your country."))
 		)->setID('BillingAddress')->setName('BillingAddress');
+		
+		$cty2->setValue('AU');
 
 		$fields->push($shippingAddressFields);
 		$fields->push($billingAddressFields);
