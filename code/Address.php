@@ -18,6 +18,7 @@ class Address extends DataObject {
 		'Default' => 'Boolean',
 		'FirstName' => 'Varchar',
 		'Surname' => 'Varchar',
+		'Phone' => 'Varchar',
 		'Company' => 'Varchar',
 		'Address' => 'Varchar(255)',
 		'AddressLine2' => 'Varchar(255)',
@@ -99,6 +100,7 @@ class Address_Shipping extends Address {
 		
 		$formattedData['ShippingFirstName'] = $this->FirstName;
 		$formattedData['ShippingSurname'] = $this->Surname;
+		$formattedData['ShippingPhone'] = $this->Phone;
 		$formattedData['ShippingCompany'] = $this->Company;
 		$formattedData['ShippingAddress'] = $this->Address;
 		$formattedData['ShippingAddressLine2'] = $this->AddressLine2;
@@ -140,6 +142,7 @@ class Address_Billing extends Address {
 		
 		$formattedData['BillingFirstName'] = $this->FirstName;
 		$formattedData['BillingSurname'] = $this->Surname;
+		$formattedData['BillingPhone'] = $this->Phone;
 		$formattedData['BillingCompany'] = $this->Company;
 		$formattedData['BillingAddress'] = $this->Address;
 		$formattedData['BillingAddressLine2'] = $this->AddressLine2;

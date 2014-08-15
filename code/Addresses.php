@@ -6,6 +6,7 @@ class Addresses_Order extends DataExtension {
 		//Address fields
 		'ShippingFirstName' => 'Varchar',
 		'ShippingSurname' => 'Varchar',
+		'ShippingPhone' => 'Varchar',
 		'ShippingCompany' => 'Varchar',
 		'ShippingAddress' => 'Varchar(255)',
 		'ShippingAddressLine2' => 'Varchar(255)',
@@ -19,6 +20,7 @@ class Addresses_Order extends DataExtension {
 
 		'BillingFirstName' => 'Varchar',
 		'BillingSurname' => 'Varchar',
+		'BillingPhone' => 'Varchar',
 		'BillingCompany' => 'Varchar',
 		'BillingAddress' => 'Varchar(255)',
 		'BillingAddressLine2' => 'Varchar(255)',
@@ -82,6 +84,7 @@ class Addresses_Customer extends DataExtension {
 			'MemberID' => $this->owner->ID,
 			'FirstName' => $data['ShippingFirstName'],
 			'Surname' => $data['ShippingSurname'],
+			'Phone' => $data['ShippingPhone'],
 			'Company' => isset($data['ShippingCompany']) ? $data['ShippingCompany'] : '',
 			'Address' => $data['ShippingAddress'],
 			'AddressLine2' => isset($data['ShippingAddressLine2']) ? $data['ShippingAddressLine2'] : '',
@@ -98,6 +101,7 @@ class Addresses_Customer extends DataExtension {
 			'MemberID' => $this->owner->ID,
 			'FirstName' => $data['BillingFirstName'],
 			'Surname' => $data['BillingSurname'],
+			'Phone' => $data['BillingPhone'],
 			'Company' => isset($data['BillingCompany']) ? $data['BillingCompany'] : '',
 			'Address' => $data['BillingAddress'],
 			'AddressLine2' => isset($data['BillingAddressLine2']) ? $data['BillingAddressLine2'] : '',
@@ -199,6 +203,7 @@ class Addresses_OrderForm extends Extension {
 				->setCustomValidationMessage(_t('CheckoutPage.PLEASE_ENTER_FIRSTNAME',"Please enter a first name.")),
 			TextField::create('ShippingSurname', _t('CheckoutPage.SURNAME',"* Surname"))
 				->setCustomValidationMessage(_t('CheckoutPage.PLEASE_ENTER_SURNAME',"Please enter a surname.")),
+			TextField::create('ShippingPhone', '* Phone'),
 			TextField::create('ShippingCompany', _t('CheckoutPage.COMPANY',"Company")),
 			TextField::create('ShippingAddress', _t('CheckoutPage.ADDRESS',"* Address"))
 				->setCustomValidationMessage(_t('CheckoutPage.PLEASE_ENTER_ADDRESS',"Please enter an address."))
@@ -229,6 +234,7 @@ class Addresses_OrderForm extends Extension {
 				->addExtraClass('address-break'),
 			TextField::create('BillingSurname', _t('CheckoutPage.SURNAME',"* Surname"))
 				->setCustomValidationMessage(_t('CheckoutPage.PLEASEENTERYOURSURNAME',"Please enter your surname.")),
+			TextField::create('BillingPhone', '* Phone'),
 			TextField::create('BillingCompany', _t('CheckoutPage.COMPANY',"Company")),
 			TextField::create('BillingAddress', _t('CheckoutPage.ADDRESS',"* Address"))
 				->setCustomValidationMessage(_t('CheckoutPage.PLEASEENTERYOURADDRESS',"Please enter your address."))
@@ -256,11 +262,13 @@ class Addresses_OrderForm extends Extension {
 		$validator->appendRequiredFields(RequiredFields::create(
 			'ShippingFirstName',
 			'ShippingSurname',
+			'ShippingPhone',
 			'ShippingAddress',
 			'ShippingCity',
 			'ShippingCountryCode',
 			'BillingFirstName',
 			'BillingSurname',
+			'BillingPhone',
 			'BillingAddress',
 			'BillingCity',
 			'BillingCountryCode'

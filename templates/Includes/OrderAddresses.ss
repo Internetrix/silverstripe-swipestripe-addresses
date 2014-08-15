@@ -12,6 +12,7 @@
 			<% end_if %>
 			<br />
 				
+			<% if BillingPhone %>        $BillingPhone<br />      <% end_if %>
 			<% if BillingCompany %>      $BillingCompany<br />      <% end_if %>
 			<% if BillingAddress %>      $BillingAddress<br />      <% end_if %>
 			<% if BillingAddressLine2 %> $BillingAddressLine2<br /> <% end_if %>
@@ -25,6 +26,7 @@
 		<td>
 			$ShippingFirstName $ShippingSurname <br />
 			
+			<% if ShippingPhone %>        $ShippingPhone<br />      <% end_if %>
 			<% if ShippingCompany %>      $ShippingCompany<br />      <% end_if %>
 			<% if ShippingAddress %>      $ShippingAddress<br />      <% end_if %>
 			<% if ShippingAddressLine2 %> $ShippingAddressLine2<br /> <% end_if %>
