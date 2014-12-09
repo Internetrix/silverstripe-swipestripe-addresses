@@ -68,6 +68,15 @@ class Addresses_Customer extends DataExtension {
 
 		$data = $order->toMap();
 		
+		//====================Added in brisx=========================
+		$fields = DataObject::database_fields('Order');
+		foreach($fields as $key => $value){
+			if(!array_key_exists($key, $data)){
+				$data[$key] = ' ';
+			}
+		}
+		//===================================================
+		
 		// Set Firstname/Surname Fields on Member table
 		if(!$this->owner->FirstName) {
 			$this->owner->FirstName = $data['ShippingFirstName'];
